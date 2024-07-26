@@ -79,14 +79,15 @@ $row= mysqli_fetch_array($query);
                     <th></th>
                 </tr>
             </thead>
-            <tbody class="contenido">
+            <tbody class="container">
+                <div class="contenido">
                 <tr>
                 <th>
-                    <input name="consumo" type="text" readonly value="<?php echo $row['id_consumo'] ?>"></th>
+                    <input  class="contenido" name="contenido_id_consumo" type="text" readonly value="<?php echo $row['id_consumo'] ?>"></th>
                 <!--<th><input name="placa" type="text" value="<?php echo $row['eqtrans_placa'] ?>" ></th>-->
-                <th><input name="consumo_anterior" type="text" readonly value="<?php echo $row['consumo_saldo_anterior'] ?>"></th>
-                <th><input name="consumo_importe" type="text" id="consumoimporte" value="<?php echo $row['consumo_importe'] ?>"></th>
-                <th><input name="consumo_saldo_actual" type="text" readonly value="<?php if($row['consumo_saldo_actual']=== null)
+                <th><input class="contenido" name="consumo_anterior" id="contenido_anterior" type="text" readonly value="<?php echo $row['consumo_saldo_anterior'] ?>"></th>
+                <th><input class="contenido" name="consumo_importe" id="contenido_importe" type="text" onchange="calcularConsumo()" value="<?php echo $row['consumo_importe'] ?>"></th> 
+                <th><input class="contenido" name="consumo_saldo" id="contenido_saldo" type="text" readonly value="<?php if($row['consumo_saldo_actual']=== null)
                     echo "0.00";
                 else 
                 echo $row['consumo_saldo_actual'] ?>"></th>
@@ -94,7 +95,9 @@ $row= mysqli_fetch_array($query);
                     <input type="hidden" name="consumo" value="<?php echo $row['id_consumo']?>">
                     <input class="form-control" type="submit" onclick="location.reload()" value="Guardar">
                     <!--<a href="editar.php?id_consumo=<?php echo $row['id_consumo'] ?>">Guardar</a></th>-->
+                </th>
                 </tr>
+                </div>
             </tbody>
         </table>
     </div>
@@ -129,61 +132,57 @@ $row= mysqli_fetch_array($query);
                     <th></th>
                 </tr>
             </thead>
-            <tbody class="contenido">
+            <tbody class="container">
+                <div class="consumo">
                 <tr><?php while($row= mysqli_fetch_array($query)):?>
-                <th><input name="consumo" type="text" readonly value="<?php echo $row['id_consumo'] ?>"></th>
+                <th><input class="consumo" name="consumo" type="text" readonly value="<?php echo $row['id_consumo'] ?>"></th>
                 <!--<th><input name="placa" type="text" value="<?php echo $row['eqtrans_placa'] ?>" ></th>-->
-                <th><input name="consumo_anterior" readonly type="text" id="consumo_anterior" value="<?php echo $row['consumo_saldo_anterior'] ?>"></th>
-                <th><input name="consumo_importe" type="text" id="consumo_importe" value="<?php echo $row['consumo_importe'] ?>"></th>
-                <th><input name="consumo_actual" type="text" readonly id="consumo_actual" value="<?php if($row['consumo_saldo_actual']=== null)
+                <th><input class="consumo" name="consumo_anterior_nuevo" readonly type="text" id="consumo_anterior_nuevo" value="<?php echo $row['consumo_saldo_anterior'] ?>"></th>
+                <th><input class="consumo" name="consumo_importe_nuevo" type="text" id="consumo_importe_nuevo" value="<?php echo $row['consumo_importe'] ?>"></th>
+                <th><input class="consumo" name="consumo_actual_nuevo" type="text" readonly id="consumo_actual_nuevo" value="<?php if($row['consumo_saldo_actual']=== null)
                     echo "0.00";
                 else
                 echo $row['consumo_saldo_actual']?>"></th>
                 <!--<th> <a href="editar.php?id_consumo=<?php echo $row['id_consumo'] ?>">Guardar</a></th>-->
                 </tr>
-                <tr>
-                <?php 
-                for($i=0; $i < count($row); $i++){
-                 // echo $row[$i].'<br/>';
-                }
-               // foreach ($row as $valor){
-               //     echo $valor.'<br/>';
-               // }
-                $consumo_saldo_actual = $row['consumo_saldo_actual'];
-                $consumo_saldo_anterior = $row['consumo_saldo_anterior'];
-                $importeActualizadoActual =$row['consumo_saldo_anterior']-$row['consumo_importe'];
-                $recargo0= 0;
-                $recargo1= $consumo_saldo_actual-$importeAnterior;
-
-                $importeAnterior =$row['consumo_saldo_anterior'] + $recargo;
-                $cosumoImporte=$row['consumo_importe'];
-
-                //$recargo2="";
-                echo" ConsumoActual0Anterior: $consumo_saldo_actual <br>";
-                echo "ConsumoActualActualizado: $importeActualizadoActual <br>";
-                //echo "recargo"
-                //echo "nuevoRecargo:$recargo1 <br>";
-                echo "nuevoImporteAnterior: $consumo_saldo_anterior<br>";
-                //echo "nuevoImporteActualizado: $importeActualizadoActual <br>";
-
-               // for ($i =1; $i <= $row; $i++){
-               // } 
-                ?>
-                </tr>
                 <?php endwhile; ?>
+                <!--
+                <script>
+                    calcularConsumo();
+                </script>
+                -->
+                </div>
+
             </tbody>
         </table>
         <script>
-            document.getElementById("importe").addEventListener("change"),calcularConsumo();
+            
             function calcularConsumo(){
-                print ;
+
+                        var consumoAnterior = document.getElementById("contenido_anterior").value;
+                        var consumoActual = document.getElementById("contenido_saldo").value;
+                        var consumoImporte = document.getElementById("contenido_importe").value;
+
+                        var consumoAnteriorNuevo = document.getElementsByClassName("consumo");
+
+                        for(var i =0; i < consumoAnteriorNuevo.length; i++){
+                            console.log(consumoAnteriorNuevo[i].innerHTML);
+
+                        }
+                        //var consumoAnteriorNuevo= document.getElementById("consumo_anterior_nuevo").value;
+                        var consumoActualNuevo = document.getElementById("consumo_actual_nuevo").value;
+                        var consumoImporteNuevo = document.getElementById("consumo_importe_nuevo").value;
+
+                       var consumoActualizadoActual =  consumoAnterior-consumoImporte;
+                       var consumoActualizadoImporte = consumoImporteNuevo;
+                       var consumoActualizadoAnterior = recargo1+consumoActualizadoActual;
+                       var recargo1 = consumoAnteriorNuevo-consumoActual;
+                    
+                        alert(consumoAnterior + " " + consumoImporte + " " + consumoActual + " " + consumoAnteriorNuevo + " " + consumoActualNuevo + " " + consumoImporteNuevo + " " +
+                            consumoActualizadoActual + " " + " " + consumoActualizadoImporte + " ");
 
             }
-                    
-                        //var consumoAnterior = $("#consumo_anterior").val();
-                        //var consumoImporte = $("#consumo_anterior").val();
-                        //var consumoActual = $("#consumo_actual").val();
-                       // var recargo1 =$("#consumo_anterior"-"#consumo_actual").val() ;
+                        
         </script>
     </div>
     </form>
