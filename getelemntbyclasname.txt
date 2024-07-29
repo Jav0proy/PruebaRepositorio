@@ -1,0 +1,71 @@
+<script>
+    function calcularConsumo() {
+        var consumoAnterior = parseFloat(document.getElementById("contenido_anterior").value) || 0;
+        var consumoImporte = parseFloat(document.getElementById("contenido_importe").value) || 0;
+
+        var consumoActual = consumoAnterior - consumoImporte;
+        document.getElementById("contenido_saldo").value = consumoActual.toFixed(2);
+
+        // Send AJAX request to update database
+        var consumoId = document.getElementById("contenido_id_consumo").value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "update_consumo.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log(xhr.responseText);
+            }
+        };
+        xhr.send("id_consumo=" + consumoId + "&consumo_importe=" + consumoImporte + "&consumo_saldo=" + consumoActual);
+    }
+</script>
+
+<?php
+include('conexion/conexion.php');
+$con = connection();
+
+// Check if the necessary POST data is present
+if (isset($_POST['id_consumo']) && isset($_POST['consumo_importe']) && isset($_POST['consumo_saldo'])) {
+    $id_consumo = $_POST['id_consumo'];
+    $consumo_importe = $_POST['consumo_importe'];
+    $consumo_saldo = $_POST['consumo_saldo'];
+
+    // Prepare and execute update query
+    $sql = "UPDATE mtConsumoGasolinaPrueba SET consumo_importe = ?, consumo_saldo_actual = ? WHERE id_consumo = ?";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("ddi", $consumo_importe, $consumo_saldo, $id_consumo);
+
+    if ($stmt->execute()) {
+        echo "Update successful";
+    } else {
+        echo "Error updating record: " . $stmt->error;
+    }
+
+    $stmt->close();
+}
+$con->close();
+?>
+
+<tbody>
+    <tr>
+        <th>
+            <input class="contenido" name="contenido_id_consumo" id="contenido_id_consumo" type="text" readonly value="<?php echo htmlspecialchars($row['id_consumo']); ?>">
+        </th>
+        <th>
+            <input class="contenido" name="consumo_anterior" id="contenido_anterior" type="text" readonly value="<?php echo htmlspecialchars($row['consumo_saldo_anterior']); ?>">
+        </th>
+        <th>
+            <input class="contenido" name="consumo_importe" id="contenido_importe" type="text" onchange="calcularConsumo()" value="<?php echo htmlspecialchars($row['consumo_importe']); ?>">
+        </th>
+        <th>
+            <input class="contenido" name="consumo_saldo" id="contenido_saldo" type="text" readonly value="<?php echo htmlspecialchars($row['consumo_saldo_actual'] ?? '0.00'); ?>">
+        </th>
+        <th>
+            <input type="hidden" name="consumo" value="<?php echo htmlspecialchars($row['id_consumo']); ?>">
+            <input class="form-control" type="submit" value="Guardar">
+        </th>
+    </tr>
+</tbody>
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
