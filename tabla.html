@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla con 20 Registros y 12 Encabezados</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: white;
+        }
+        .title-row {
+            background-color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Tabla con 20 Registros y 12 Encabezados</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>País</th>
+                <th>Estado Civil</th>
+                <th>Profesión</th>
+                <th>Correo Electrónico</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Ciudad</th>
+                <th>Código Postal</th>
+                <th>Estado/Provincia</th>
+                <th>Fecha de Nacimiento</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Título de los datos -->
+            <tr class="title-row">
+                <td colspan="12">Personas jóvenes</td>
+            </tr>
+            <!-- Datos -->
+            <tr>
+                <td>Ana</td>
+                <td>25</td>
+                <td>México</td>
+                <td>Soltera</td>
+                <td>Ingeniera</td>
+                <td>ana@example.com</td>
+                <td>+52 123 456 7890</td>
+                <td>Calle Falsa 123</td>
+                <td>Ciudad de México</td>
+                <td>01000</td>
+                <td>CDMX</td>
+                <td>1998-05-10</td>
+            </tr>
+            <tr>
+                <td>Juan</td>
+                <td>30</td>
+                <td>España</td>
+                <td>Casado</td>
+                <td>Médico</td>
+                <td>juan@example.com</td>
+                <td>+34 987 654 3210</td>
+                <td>Avenida Central 45</td>
+                <td>Madrid</td>
+                <td>28001</td>
+                <td>Madrid</td>
+                <td>1993-03-15</td>
+            </tr>
+            <tr>
+                <td>María</td>
+                <td>28</td>
+                <td>Argentina</td>
+                <td>Soltera</td>
+                <td>Diseñadora</td>
+                <td>maria@example.com</td>
+                <td>+54 555 678 1234</td>
+                <td>Calle Libertador 789</td>
+                <td>Buenos Aires</td>
+                <td>C1000</td>
+                <td>Buenos Aires</td>
+                <td>1995-12-20</td>
+            </tr>
+            <tr>
+                <td>Pedro</td>
+                <td>29</td>
+                <td>Chile</td>
+                <td>Casado</td>
+                <td>Abogado</td>
+                <td>pedro@example.com</td>
+                <td>+56 234 567 8901</td>
+                <td>Avenida Pacífico 101</td>
+                <td>Santiago</td>
+                <td>7500000</td>
+                <td>Región Metropolitana</td>
+                <td>1994-11-05</td>
+            </tr>
+            <tr>
+                <td>Laura</td>
+                <td>26</td>
+                <td>Colombia</td>
+                <td>Soltera</td>
+                <td>Arquitecta</td>
+                <td>laura@example.com</td>
+                <td>+57 765 432 1098</td>
+                <td>Calle 10 #20-30</td>
+                <td>Bogotá</td>
+                <td>110111</td>
+                <td>Cundinamarca</td>
+                <td>1997-08-25</td>
+            </tr>
+
+            <!-- Título de los datos -->
+            <tr class="title-row">
+                <td colspan="12">Personas adultas</td>
+            </tr>
+            <!-- Datos -->
+            <tr>
+                <td>Daniel</td>
+                <td>35</td>
+                <td>Perú</td>
+                <td>Casado</td>
+                <td>Contador</td>
+                <td>daniel@example.com</td>
+                <td>+51 345 678 9012</td>
+                <td>Calle Las Flores 123</td>
+                <td>Lima</td>
+                <td>15001</td>
+                <td>Lima</td>
+                <td>1989-07-10</td>
+            </tr>
+            <tr>
+                <td>Lucía</td>
+                <td>40</td>
+                <td>Uruguay</td>
+                <td>Divorciada</td>
+                <td>Psicóloga</td>
+                <td>lucia@example.com</td>
+                <td>+598 123 456 7890</td>
+                <td>Avenida Artigas 234</td>
+                <td>Montevideo</td>
+                <td>11000</td>
+                <td>Montevideo</td>
+                <td>1983-02-14</td>
+            </tr>
+            <tr>
+                <td>Carlos</td>
+                <td>38</td>
+                <td>Bolivia</td>
+                <td>Casado</td>
+                <td>Ingeniero</td>
+                <td>carlos@example.com</td>
+                <td>+591 987 654 3210</td>
+                <td>Calle Sucre 98</td>
+                <td>La Paz</td>
+                <td>2500</td>
+                <td>La Paz</td>
+                <td>1986-06-17</td>
+            </tr>
+            <tr>
+                <td>Sofía</td>
+                <td>36</td>
+                <td>Venezuela</td>
+                <td>Soltera</td>
+                <td>Docente</td>
+                <td>sofia@example.com</td>
+                <td>+58 555 678 9012</td>
+                <td>Avenida Bolívar 200</td>
+                <td>Caracas</td>
+                <td>1010</td>
+                <td>Distrito Capital</td>
+                <td>1987-09-09</td>
+            </tr>
+            <tr>
+                <td>Martín</td>
+                <td>42</td>
+                <td>Brasil</td>
+                <td>Casado</td>
+                <td>Desarrollador</td>
+                <td>martin@example.com</td>
+                <td>+55 234 567 8901</td>
+                <td>Avenida Paulista 1000</td>
+                <td>Sao Paulo</td>
+                <td>01311-000</td>
+                <td>São Paulo</td>
+                <td>1981-03-30</td>
+            </tr>
+
+            <!-- Título de los datos -->
+            <tr class="title-row">
+                <td colspan="12">Personas mayores</td>
+            </tr>
+            <!-- Datos adicionales -->
+            <tr>
+                <td>Alberto</td>
+                <td>50</td>
+                <td>Paraguay</td>
+                <td>Casado</td>
+                <td>Empresario</td>
+                <td>alberto@example.com</td>
+                <td>+595 987 456 1230</td>
+                <td>Calle Mayor 456</td>
+                <td>Asunción</td>
+                <td>1201</td>
+                <td>Asunción</td>
+                <td>1973-05-23</td>
+            </tr>
+            <tr>
+                <td>Gabriela</td>
+                <td>55</td>
+                <td>Honduras</td>
+                <td>Viuda</td>
+                <td>Contadora</td>
+                <td>gabriela@example.com</td>
+                <td>+504 234 567 8901</td>
+                <td>Avenida Central 789</td>
+                <td>Tegucigalpa</td>
+                <td>11101</td>
+                <td>Francisco Morazán</td>
+                <td>1968-11-10</td>
+            </tr>
+            <tr>
+                <td>Javier</td>
+                <td>60</td>
+                <td>El Salvador</td>
+                <td>Casado</td>
+                <td>Médico</td>
+                <td>javier@example.com</td>
+                <td>+503 123 456 7890</td>
+                <td>Calle El Salvador 456</td>
+                <td>San Salvador</td>
+                <td>1101</td>
+                <td>San Salvador</td>
+                <td>1964-08-05</td>
+            </tr>
+            <tr>
+                <td>Paola</td>
+                <td>53</td>
+                <td>Costa Rica</td>
+                <td>Casada</td>
+                <td>Administradora</td>
+                <td>paola@example.com</td>
+                <td>+506 876 543 210</td>
+                <td>Calle Principal 123</td>
+                <td>San José</td>
+                <td>10101</td>
+                <td>San José</td>
+                <td>1970-10-15</td>
+            </tr>
+            <tr>
+                <td>Roberto</td>
+                <td>57</td>
+                <td>Ecuador</td>
+                <td>Casado</td>
+                <td>Ingeniero</td>
+                <td>roberto@example.com</td>
+                <td>+593 432 1098</td>
+                <td>Avenida de los Shyris</td>
+                <td>Quito</td>
+                <td>170150</td>
+                <td>Pichincha</td>
+                <td>1967-02-02</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
